@@ -25,11 +25,11 @@
 
 `xredis-client` 是一个提供简洁 C++20 co_await API和强大吞吐能力的Redis Client客户端，它的主要特点有：
 
-- **[优美的DSL API](#🚀-quick-start)**: 像编写脚本语言一样简单地编写 Redis 流水线（Pipeline）和事务
+- **[优美的DSL API](#QS)**: 像编写脚本语言一样简单地编写 Redis 流水线（Pipeline）和事务
 
 - **[易于集成](#installation)**: 只需将 *header-only*文件拖入你的项目，即可直接使用
 
-- **[极致性能](#🐎-performance-testing)**: 基于io_uring、模板元编程以及使用环形缓冲区Ring buffer自动批合并命令，xredis-client 在保持 API 易用性的同时绝不牺牲性能. 详见 [性能测试对比小节](#🐎-performance-testing).
+- **[极致性能](#PT)**: 基于io_uring、模板元编程以及使用环形缓冲区Ring buffer自动批合并命令，xredis-client 在保持 API 易用性的同时绝不牺牲性能. 详见 [性能测试对比小节](#PT).
 
 - **Redis特性支持完善**: 全面支持 Redis 6.0+ RESP2/RESP3 协议和 TLS，包括针对 Redis Cluster 的自动透明的 MOVED / ASK 路由并提供类型安全的 co_await 返回结果
 
@@ -37,6 +37,7 @@
 
 - **[纯异步架构设计](#understanding-concurrency-models)**: 专为高并发场景设计的完全非阻塞命令接口
 
+<a id="QS"></a>
 ## 🚀 Quick Start
 
 `xredis-client`提供了许多内置的command函数让写redis命令更加简便
@@ -204,6 +205,7 @@ lsmod | grep ktls
 cmake .. -DXREDIS_ENABLE_TLS=ON
 ```
 
+<a id="PT"></a>
 # 🐎 性能测试和对比
 `xredis-client` 没有为了API简便性去牺牲一点性能 !
 
