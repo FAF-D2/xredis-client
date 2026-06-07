@@ -27,10 +27,10 @@
 
 `xredis-client` is a redis client library built to provides user-friendly c++20 co_await API and handle high-throughput workloads. It provides features across multiple dimensions:
 
-- **[Expressive & Elegant DSL](#🚀-quick-start)**: Write Redis pipelines and transactions with the simplicity of scripting languages
+- **[Expressive & Elegant DSL](#QS)**: Write Redis pipelines and transactions with the simplicity of scripting languages
 - **[Easy to integrate](#installation)**: Drag *\*header-only\** files to your project and then you are ready to go!
 
-- **[Ultra Performance](#🐎-performance-testing)**: Driven by custom `io_uring`, zero-overhead template metaprogramming and **auto command pipeline** with ring buffer, `xredis-client` do not sacrifice performance for user-friendly API. See [performance testing](#🐎-performance-testing) here.
+- **[Ultra Performance](#PT)**: Driven by custom `io_uring`, zero-overhead template metaprogramming and **auto command pipeline** with ring buffer, `xredis-client` do not sacrifice performance for user-friendly API. See [performance testing](#PT) here.
 
 - **Comprehensive Redis Protocol Support**: Full support for Redis 6.0+ RESP2/RESP3 protocols, TLS, including automated, transparent `MOVED` / `ASK` routing for Redis Cluster. Type-safe co-await result.
 
@@ -38,6 +38,7 @@
 
 - **[Pure Asynchronous Blueprint](#understanding-concurrency-models)**: A completely non-blocking command interface engineered for high-concurrency scenarios.
 
+<a id="QS"></a>
 ## 🚀 Quick Start
 
 With `xredis-client`, modern C++ feels as natural and expressive.
@@ -210,6 +211,7 @@ Depending on your integration method, enable TLS as follows:
 cmake .. -DXREDIS_ENABLE_TLS=ON
 ```
 
+<a id="PT"></a>
 # 🐎 Performance Testing
 Despite the user-friendly API interface, `xredis-client` is efficient and ready to serve for high-performance application as well!
 
@@ -285,7 +287,7 @@ constexpr size_t ring_buffer_size = 4096; // the maximum inflight operations bef
 using Redis = xredis::RedisCluster<shared_between_threads, ring_buffer_size>;
 
 xnet::task<> func(Redis& redis){
-    co_await redis.set("key").get("key2"); // no need for any changes
+    co_await redis.set("key", "val").get("key2"); // no need for any changes
 }
 
 ```
